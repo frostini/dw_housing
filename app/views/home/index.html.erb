@@ -3,20 +3,27 @@
 
 
 <div>
-<ul>
 <% if user_signed_in? %>
+<ul>
   <li>
   <%= link_to('Logout', destroy_user_session_path) %>        
   </li>
+<% if current_user.admin? %>
+	<li>Admin stuffity</li>
+<%end%>
 <% else %>
   <li>
   <%= link_to('Login', new_user_session_path)  %>  
   </li>
-<% end %>
 </ul>
+
+<% end %>
 </div>
 
-<% if current_user.admin? %>
-<p>Admin stuffity</p>
 
-	<%end%>
+
+
+
+<% content_for :javascripts do %>
+
+<% end %>

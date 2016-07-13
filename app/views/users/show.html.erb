@@ -1,0 +1,15 @@
+<h2>Single User</h2>
+<% if user_signed_in? %>
+<h1>
+	Welcome <%=@current_user.email%>
+</h1>
+<%end%>
+
+
+
+<p>
+	You are an admin:
+</p>
+<p>
+	<%= @current_user.admin%>
+</p>
