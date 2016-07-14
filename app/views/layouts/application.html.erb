@@ -2,19 +2,27 @@
 <html>
 <head>
   <title>DwHousing</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
-
-<%= yield :javascript_includes %>
+	<%= yield :javascript_includes %>
 
 
 </head>
 <body>
+<div
+  class="animsition"
+  data-animsition-in-class="fade-in"
+  data-animsition-in-duration="1000"
+  data-animsition-out-class="fade-out"
+  data-animsition-out-duration="800"
+>
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+  
        
 <%= yield %>
 
+</div>
 </body>
 </html>
