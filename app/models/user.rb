@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
 	APPLICANT				= "User::Applicant"
 	VISITOR					= "User::Visitor"
 
-self.inheritance_column = 'user_type'
+  self.inheritance_column = 'user_type'
 
+  has_many :addresses, :as => :addressable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
