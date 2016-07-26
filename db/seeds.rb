@@ -61,6 +61,33 @@ dwelling = Dwelling.new({
 	})
 dwelling.save
 
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling.id,
+      bedrooms: 1,
+      baths: 1,
+      occupant_min: 1,
+      occupant_max: 2,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520
+})
+floor_plan.save
+
+floor_plan_2 = FloorPlan.new({
+      dwelling_id: dwelling.id,
+      bedrooms: 2,
+      baths: 2,
+      occupant_min: 2,
+      occupant_max: 3,
+      mo_rent_min: 600,
+      mo_rent_max: 900,
+      sq_ft_min: 550,
+      sq_ft_max: 650
+})
+floor_plan_2.save
+
+
 
 
 address_2 = Address.new({
@@ -78,8 +105,46 @@ address_2 = Address.new({
 address_2.save
 
 
+contact = Contact.new({
+      first_name: "Joe",
+      last_name: "Schmoe",
+      phone_number: 5674455676,
+      email_address: "joe@schmoe.com",
+      dwelling_id: dwelling.id
+      })
+
+contact.save
 
 
+
+address_4 = Address.new({
+      line_1: "1350 Golden Gate Ave.",
+      line_2: "Unit #5",
+      city: "San Francisco",
+      state: "CA",
+      zipcode: 94115,
+      country: "USA",
+      latitude: 37.779697,
+      longitude: -122.4351404,
+      addressable_type: "Contact",
+      addressable_id: contact.id
+})
+address_4.save
+
+
+am = Amenity.new(amenity_name: "stuff")
+am.save
+yes= DwellingFeature.new(amenity_id: am.id, dwelling_id: dwelling.id, has_amenity?: true)
+yes.save
+
+dt = DwellingDetail.new(dwelling_id: dwelling.id, key: "Deposit", value: "Need to have a deposit of $200 before moving in.")
+dt.save
+# 3001 Laguna St
+# San Francisco,
+# CA,
+# 94123
+# 37.7989015
+# -122.4309949
 
 # address_1 = Address.
 
