@@ -43,17 +43,7 @@ address_1 = user_1.addresses.new({
       longitude: -122.4272052
 })
 address_1.save
-address_2 = user_1.addresses.new({
-      line_1: "1350 Golden Gate Ave.",
-      line_2: "Unit #5",
-      city: "San Francisco",
-      state: "CA",
-      zipcode: 94115,
-      country: "USA",
-      latitude: 37.779697,
-      longitude: -122.4351404
-})
-address_2.save
+
 address_3 = user_2.addresses.new({
       line_1: "1415 Larkin St.",
       city: "San Francisco",
@@ -64,6 +54,30 @@ address_3 = user_2.addresses.new({
       longitude: -122.419305
 })
 address_3.save
+
+dwelling = Dwelling.new({
+			dwelling_name: "Sample Dwelling",
+			dwelling_description: "This dwelling is in the history fillmore district"
+	})
+dwelling.save
+
+
+
+address_2 = Address.new({
+      line_1: "1350 Golden Gate Ave.",
+      line_2: "Unit #5",
+      city: "San Francisco",
+      state: "CA",
+      zipcode: 94115,
+      country: "USA",
+      latitude: 37.779697,
+      longitude: -122.4351404,
+      addressable_type: "Dwelling",
+      addressable_id: dwelling.id
+})
+address_2.save
+
+
 
 
 
