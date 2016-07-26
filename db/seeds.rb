@@ -61,6 +61,33 @@ dwelling = Dwelling.new({
 	})
 dwelling.save
 
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling.id,
+      bedrooms: 1,
+      baths: 1,
+      occupant_min: 1,
+      occupant_max: 2,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520
+})
+floor_plan.save
+
+floor_plan_2 = FloorPlan.new({
+      dwelling_id: dwelling.id,
+      bedrooms: 2,
+      baths: 2,
+      occupant_min: 2,
+      occupant_max: 3,
+      mo_rent_min: 600,
+      mo_rent_max: 900,
+      sq_ft_min: 550,
+      sq_ft_max: 650
+})
+floor_plan_2.save
+
+
 
 
 address_2 = Address.new({

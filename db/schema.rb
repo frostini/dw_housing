@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726064044) do
+ActiveRecord::Schema.define(version: 20160726070526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20160726064044) do
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "dwelling_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.integer "phone_number",  limit: 8
-    t.string  "email_address"
+    t.integer  "dwelling_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "phone_number",  limit: 8
+    t.string   "email_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "contacts", ["dwelling_id"], name: "index_contacts_on_dwelling_id", using: :btree
@@ -49,6 +51,22 @@ ActiveRecord::Schema.define(version: 20160726064044) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "floor_plans", force: :cascade do |t|
+    t.integer  "dwelling_id"
+    t.float    "bedrooms"
+    t.float    "baths"
+    t.integer  "occupant_min"
+    t.integer  "occupant_max"
+    t.integer  "mo_rent_min"
+    t.integer  "mo_rent_max"
+    t.integer  "sq_ft_min"
+    t.integer  "sq_ft_max"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
