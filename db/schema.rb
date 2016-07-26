@@ -34,11 +34,14 @@ ActiveRecord::Schema.define(version: 20160726064044) do
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
+    t.integer "dwelling_id"
     t.string  "first_name"
     t.string  "last_name"
     t.integer "phone_number",  limit: 8
     t.string  "email_address"
   end
+
+  add_index "contacts", ["dwelling_id"], name: "index_contacts_on_dwelling_id", using: :btree
 
   create_table "dwellings", force: :cascade do |t|
     t.string   "dwelling_name"

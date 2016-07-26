@@ -82,7 +82,8 @@ contact = Contact.new({
       first_name: "Joe",
       last_name: "Schmoe",
       phone_number: 5674455676,
-      email_address: "joe@schmoe.com"
+      email_address: "joe@schmoe.com",
+      dwelling_id: dwelling.id
       })
 
 contact.save
