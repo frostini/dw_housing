@@ -78,8 +78,36 @@ address_2 = Address.new({
 address_2.save
 
 
+contact = Contact.new({
+      first_name: "Joe",
+      last_name: "Schmoe",
+      phone_number: 5674455676,
+      email_address: "joe@schmoe.com"
+      })
+
+contact.save
 
 
+
+address_4 = Address.new({
+      line_1: "1350 Golden Gate Ave.",
+      line_2: "Unit #5",
+      city: "San Francisco",
+      state: "CA",
+      zipcode: 94115,
+      country: "USA",
+      latitude: 37.779697,
+      longitude: -122.4351404,
+      addressable_type: "Contact",
+      addressable_id: contact.id
+})
+address_4.save
+# 3001 Laguna St
+# San Francisco,
+# CA,
+# 94123
+# 37.7989015
+# -122.4309949
 
 # address_1 = Address.
 
