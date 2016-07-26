@@ -154,6 +154,14 @@ use_add = UserAddress.new({
       ref_address_type_id: ref_ad_type_1.id
       })
 use_add.save
+
+use_add_1 = UserAddress.new({
+      address_id: address_1.id,
+      user_id: user_1.id,
+      ref_address_type_id: ref_ad_type.id
+      })
+use_add_1.save
+
 # address_3 = user_2.addresses.new({
 #       line_1: "1415 Larkin St.",
 #       city: "San Francisco",
