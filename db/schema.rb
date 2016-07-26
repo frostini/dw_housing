@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726070526) do
+ActiveRecord::Schema.define(version: 20160726074121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20160726070526) do
 
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "amenity_name"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.integer  "dwelling_id"
     t.string   "first_name"
@@ -44,6 +48,15 @@ ActiveRecord::Schema.define(version: 20160726070526) do
   end
 
   add_index "contacts", ["dwelling_id"], name: "index_contacts_on_dwelling_id", using: :btree
+
+  create_table "dwelling_features", force: :cascade do |t|
+    t.integer "amenity_id"
+    t.integer "dwelling_id"
+    t.boolean "has_amenity?"
+  end
+
+  add_index "dwelling_features", ["amenity_id"], name: "index_dwelling_features_on_amenity_id", using: :btree
+  add_index "dwelling_features", ["dwelling_id"], name: "index_dwelling_features_on_dwelling_id", using: :btree
 
   create_table "dwellings", force: :cascade do |t|
     t.string   "dwelling_name"

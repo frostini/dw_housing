@@ -130,6 +130,12 @@ address_4 = Address.new({
       addressable_id: contact.id
 })
 address_4.save
+
+
+am = Amenity.new(amenity_name: "stuff")
+am.save
+yes= DwellingFeature.new(amenity_id: am.id, dwelling_id: dwelling.id, has_amenity?: true)
+yes.save
 # 3001 Laguna St
 # San Francisco,
 # CA,
