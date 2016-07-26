@@ -6,7 +6,16 @@ class User < ActiveRecord::Base
 
   self.inheritance_column = 'user_type'
 
-  has_many :addresses, :as => :addressable
+  # has_many :addresses, :as => :addressable
+
+   # has_one :photo, :as => :attachable, :dependent => :destroy
+   # has_one :secondary_photo, -> { where attachable_type: "SecondaryPhoto"},
+   #   class_name: Photo, foreign_key: :attachable_id,
+   #   foreign_type: :attachable_type, dependent: :destroy
+
+  has_many :addresses, :as => :addressable, through: :user_addresses
+  has_many :user_addresses
+
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

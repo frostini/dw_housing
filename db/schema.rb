@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726080419) do
+ActiveRecord::Schema.define(version: 20160726203559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,21 @@ ActiveRecord::Schema.define(version: 20160726080419) do
 
   add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
 
+  create_table "ref_address_types", force: :cascade do |t|
+    t.string "address_type_code"
+    t.string "address_type_description"
+  end
+
+  create_table "user_addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "address_id"
+    t.integer "ref_address_type_id"
+  end
+
+  add_index "user_addresses", ["address_id"], name: "index_user_addresses_on_address_id", using: :btree
+  add_index "user_addresses", ["ref_address_type_id"], name: "index_user_addresses_on_ref_address_type_id", using: :btree
+  add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -113,4 +128,7 @@ ActiveRecord::Schema.define(version: 20160726080419) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "user_addresses", "addresses"
+  add_foreign_key "user_addresses", "ref_address_types"
+  add_foreign_key "user_addresses", "users"
 end
