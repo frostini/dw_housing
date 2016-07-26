@@ -5,4 +5,6 @@ class Dwelling < ActiveRecord::Base
 
 	has_many :amenities, through: :dwelling_features
 	has_many :dwelling_features
+
+	has_many :dwelling_details, dependent: :destroy
 end

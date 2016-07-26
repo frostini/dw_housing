@@ -136,6 +136,9 @@ am = Amenity.new(amenity_name: "stuff")
 am.save
 yes= DwellingFeature.new(amenity_id: am.id, dwelling_id: dwelling.id, has_amenity?: true)
 yes.save
+
+dt = DwellingDetail.new(dwelling_id: dwelling.id, key: "Deposit", value: "Need to have a deposit of $200 before moving in.")
+dt.save
 # 3001 Laguna St
 # San Francisco,
 # CA,
