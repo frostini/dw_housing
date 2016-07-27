@@ -33,6 +33,44 @@ user_2 = User.new({
 	})
 user_2.save
 
+inc_source_1 = IncomeSource.new({
+      source: "job",
+      frequency_of_payment: "twice",
+      amount_per_payment: 234,
+      source_proof_details: "two paystubs",
+      incomeable_type: "User", 
+      incomeable_id: user_2.id
+})
+inc_source_1.save
+inc_source_2 = IncomeSource.new({
+      source: "self",
+      frequency_of_payment: "annual",
+      amount_per_payment: 3343,
+      source_proof_details: "P & L",
+      incomeable_type: "User", 
+      incomeable_id: user_2.id
+})
+inc_source_2.save
+
+ho_mem = HouseholdMember.new({
+      first_name: "Ima",
+      last_name: "Member",
+      relationship: "sister",
+      dob: Date.new(2001,2,3),
+      gender: "female",
+      ethnicity: "same",
+      user_id: user_1.id
+      })
+ho_mem.save
+inc_source_3 = IncomeSource.new({
+      source: "hustlin",
+      frequency_of_payment: "bi-weekly",
+      amount_per_payment: 3454,
+      source_proof_details: "paystubs",
+      incomeable_type: "HouseholdMember", 
+      incomeable_id: ho_mem.id
+})
+inc_source_3.save
 
 
 dwelling = Dwelling.new({

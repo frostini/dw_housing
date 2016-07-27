@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726203559) do
+ActiveRecord::Schema.define(version: 20160727221545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,31 @@ ActiveRecord::Schema.define(version: 20160726203559) do
   end
 
   add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
+
+  create_table "household_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "relationship"
+    t.date    "dob"
+    t.string  "gender"
+    t.string  "ethnicity"
+  end
+
+  add_index "household_members", ["user_id"], name: "index_household_members_on_user_id", using: :btree
+
+  create_table "income_sources", force: :cascade do |t|
+    t.string   "source"
+    t.string   "frequency_of_payment"
+    t.float    "amount_per_payment"
+    t.string   "source_proof_details"
+    t.integer  "incomeable_id"
+    t.string   "incomeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "income_sources", ["incomeable_type", "incomeable_id"], name: "index_income_sources_on_incomeable_type_and_incomeable_id", using: :btree
 
   create_table "ref_address_types", force: :cascade do |t|
     t.string "address_type_code"
