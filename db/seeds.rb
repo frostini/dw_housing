@@ -33,27 +33,7 @@ user_2 = User.new({
 	})
 user_2.save
 
-address_1 = user_1.addresses.new({
-      line_1: "537 Octavia St.",
-      city: "San Francisco",
-      state: "CA",
-      zipcode: 94102,
-      country: "USA",
-      latitude: 37.7773228,
-      longitude: -122.4272052
-})
-address_1.save
 
-address_3 = user_2.addresses.new({
-      line_1: "1415 Larkin St.",
-      city: "San Francisco",
-      state: "CA",
-      zipcode: 94109,
-      country: "USA",
-      latitude: 37.7910904,
-      longitude: -122.419305
-})
-address_3.save
 
 dwelling = Dwelling.new({
 			dwelling_name: "Sample Dwelling",
@@ -139,6 +119,65 @@ yes.save
 
 dt = DwellingDetail.new(dwelling_id: dwelling.id, key: "Deposit", value: "Need to have a deposit of $200 before moving in.")
 dt.save
+
+
+ref_ad_type = RefAddressType.new({
+      address_type_code: "mailing",
+      address_type_description: "this is for mailing stuff"
+      })
+ref_ad_type_1 = RefAddressType.new({
+      address_type_code: "present address",
+      address_type_description: "this is their current address"
+      })
+ref_ad_type.save
+ref_ad_type_1.save
+
+
+
+
+address_1 = Address.new({
+      line_1: "537 Octavia St.",
+      city: "San Francisco",
+      state: "CA",
+      zipcode: 94102,
+      country: "USA",
+      latitude: 37.7773228,
+      longitude: -122.4272052
+      # addressable_type: "User",
+      # addressable_id: contact.id
+})
+address_1.save
+
+use_add = UserAddress.new({
+      address_id: address_1.id,
+      user_id: user_1.id,
+      ref_address_type_id: ref_ad_type_1.id
+      })
+use_add.save
+
+use_add_1 = UserAddress.new({
+      address_id: address_1.id,
+      user_id: user_1.id,
+      ref_address_type_id: ref_ad_type.id
+      })
+use_add_1.save
+
+
+
+# address_3 = user_2.addresses.new({
+#       line_1: "1415 Larkin St.",
+#       city: "San Francisco",
+#       state: "CA",
+#       zipcode: 94109,
+#       country: "USA",
+#       latitude: 37.7910904,
+#       longitude: -122.419305
+# })
+# address_3.save
+
+
+
+
 # 3001 Laguna St
 # San Francisco,
 # CA,
