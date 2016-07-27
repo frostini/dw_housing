@@ -35,6 +35,19 @@ user_2.save
 
 
 
+ho_mem = HouseholdMember.new({
+      first_name: "Ima",
+      last_name: "Member",
+      relationship: "sister",
+      dob: Date.new(2001,2,3),
+      gender: "female",
+      ethnicity: "same",
+      user_id: user_1.id
+      })
+ho_mem.save
+
+
+
 dwelling = Dwelling.new({
 			dwelling_name: "Sample Dwelling",
 			dwelling_description: "This dwelling is in the history fillmore district"

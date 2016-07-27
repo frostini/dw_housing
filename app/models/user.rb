@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :addresses, :as => :addressable, through: :user_addresses
   has_many :user_addresses
 
+  has_many :household_members
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
