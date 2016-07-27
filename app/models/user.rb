@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   has_many :income_sources, :as => :incomeable
   
+  has_many :household_expenses
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

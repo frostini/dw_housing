@@ -32,7 +32,14 @@ user_2 = User.new({
 	admin: false
 	})
 user_2.save
-
+h_exp = HouseholdExpense.new({
+      expense_kind: "Gas",
+      entity: "SDGE",
+      frequency: "bi monthly",
+      amount: 4456.43,
+      user_id: user_1.id
+})
+h_exp.save
 inc_source_1 = IncomeSource.new({
       source: "job",
       frequency_of_payment: "twice",
