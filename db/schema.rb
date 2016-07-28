@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728003250) do
+ActiveRecord::Schema.define(version: 20160728020854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(version: 20160728003250) do
   end
 
   create_table "income_sources", force: :cascade do |t|
+    t.integer  "payment_period_id"
     t.string   "source"
-    t.string   "frequency_of_payment"
     t.float    "amount_per_payment"
     t.string   "source_proof_details"
     t.integer  "incomeable_id"
@@ -140,6 +140,13 @@ ActiveRecord::Schema.define(version: 20160728003250) do
   end
 
   add_index "income_sources", ["incomeable_type", "incomeable_id"], name: "index_income_sources_on_incomeable_type_and_incomeable_id", using: :btree
+  add_index "income_sources", ["payment_period_id"], name: "index_income_sources_on_payment_period_id", using: :btree
+
+  create_table "payment_periods", force: :cascade do |t|
+    t.string   "payment_period_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ref_address_types", force: :cascade do |t|
     t.string   "address_type_code"

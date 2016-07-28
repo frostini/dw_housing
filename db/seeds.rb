@@ -38,6 +38,7 @@ inc_s_cat = IncomeSourceCategory.new({
       inc_cat_description: "this is a paystub for an employee"
       })
 inc_s_cat.save
+
 u_inc_s_cat = UserIncomeSourceCategory.new({
             user_id: user_1.id,
             income_source_category: inc_s_cat
@@ -51,24 +52,38 @@ h_exp = HouseholdExpense.new({
       user_id: user_1.id
 })
 h_exp.save
+pay_per_1 = PaymentPeriod.new({
+            payment_period_type: "bi-weekly"
+      })
+pay_per_1.save
+pay_per_2 = PaymentPeriod.new({
+            payment_period_type: "monthly"
+      })
+pay_per_2.save
 inc_source_1 = IncomeSource.new({
       source: "job",
-      frequency_of_payment: "twice",
       amount_per_payment: 234,
       source_proof_details: "two paystubs",
       incomeable_type: "User", 
-      incomeable_id: user_2.id
+      incomeable_id: user_2.id,
+      payment_period_id: pay_per_1.id
 })
 inc_source_1.save
 inc_source_2 = IncomeSource.new({
       source: "self",
-      frequency_of_payment: "annual",
       amount_per_payment: 3343,
       source_proof_details: "P & L",
       incomeable_type: "User", 
-      incomeable_id: user_2.id
+      incomeable_id: user_2.id,
+      payment_period_id: pay_per_2.id
 })
 inc_source_2.save
+
+# freq_of_payment = FrequencyOfPayment.new({
+#             payment_period_type: "Bi-Weekly"
+#       })
+# freq_of_payment.save
+
 
 ho_mem = HouseholdMember.new({
       first_name: "Ima",
@@ -82,7 +97,7 @@ ho_mem = HouseholdMember.new({
 ho_mem.save
 inc_source_3 = IncomeSource.new({
       source: "hustlin",
-      frequency_of_payment: "bi-weekly",
+      payment_period_id: pay_per_2.id,
       amount_per_payment: 3454,
       source_proof_details: "paystubs",
       incomeable_type: "HouseholdMember", 
