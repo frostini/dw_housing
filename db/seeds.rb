@@ -33,17 +33,18 @@ user_2 = User.new({
 	})
 user_2.save
 
-inc_s_cat = IncomeSourceCategory.new({
+inc_s_cat_1 = IncomeSourceCategory.new({
             inc_cat_name: "w-2",
       inc_cat_description: "this is a paystub for an employee"
       })
-inc_s_cat.save
-
-u_inc_s_cat = UserIncomeSourceCategory.new({
-            user_id: user_1.id,
-            income_source_category: inc_s_cat
+inc_s_cat_1.save
+inc_s_cat_2 = IncomeSourceCategory.new({
+            inc_cat_name: "w-2",
+      inc_cat_description: "this is a paystub for an employee"
       })
-u_inc_s_cat.save
+inc_s_cat_2.save
+
+
 h_exp = HouseholdExpense.new({
       expense_kind: "Gas",
       entity: "SDGE",
@@ -66,7 +67,8 @@ inc_source_1 = IncomeSource.new({
       source_proof_details: "two paystubs",
       incomeable_type: "User", 
       incomeable_id: user_2.id,
-      payment_period_id: pay_per_1.id
+      payment_period_id: pay_per_1.id,
+      income_source_category_id: inc_s_cat_2.id
 })
 inc_source_1.save
 inc_source_2 = IncomeSource.new({
@@ -75,7 +77,8 @@ inc_source_2 = IncomeSource.new({
       source_proof_details: "P & L",
       incomeable_type: "User", 
       incomeable_id: user_2.id,
-      payment_period_id: pay_per_2.id
+      payment_period_id: pay_per_2.id,
+      income_source_category_id: inc_s_cat_1.id
 })
 inc_source_2.save
 
@@ -83,8 +86,6 @@ inc_source_2.save
 #             payment_period_type: "Bi-Weekly"
 #       })
 # freq_of_payment.save
-
-
 ho_mem = HouseholdMember.new({
       first_name: "Ima",
       last_name: "Member",
@@ -97,13 +98,16 @@ ho_mem = HouseholdMember.new({
 ho_mem.save
 inc_source_3 = IncomeSource.new({
       source: "hustlin",
-      payment_period_id: pay_per_2.id,
       amount_per_payment: 3454,
       source_proof_details: "paystubs",
       incomeable_type: "HouseholdMember", 
-      incomeable_id: ho_mem.id
+      incomeable_id: ho_mem.id,
+      payment_period_id: pay_per_2.id,
+      income_source_category_id: inc_s_cat_2.id
 })
 inc_source_3.save
+
+
 
 
 dwelling = Dwelling.new({

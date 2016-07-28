@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160728020854) do
 
   create_table "income_sources", force: :cascade do |t|
     t.integer  "payment_period_id"
+    t.integer  "income_source_category_id"
     t.string   "source"
     t.float    "amount_per_payment"
     t.string   "source_proof_details"
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(version: 20160728020854) do
     t.datetime "updated_at"
   end
 
+  add_index "income_sources", ["income_source_category_id"], name: "index_income_sources_on_income_source_category_id", using: :btree
   add_index "income_sources", ["incomeable_type", "incomeable_id"], name: "index_income_sources_on_incomeable_type_and_incomeable_id", using: :btree
   add_index "income_sources", ["payment_period_id"], name: "index_income_sources_on_payment_period_id", using: :btree
 
@@ -166,16 +168,6 @@ ActiveRecord::Schema.define(version: 20160728020854) do
   add_index "user_addresses", ["address_id"], name: "index_user_addresses_on_address_id", using: :btree
   add_index "user_addresses", ["ref_address_type_id"], name: "index_user_addresses_on_ref_address_type_id", using: :btree
   add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
-
-  create_table "user_income_source_categories", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "income_source_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_income_source_categories", ["income_source_category_id"], name: "index_usr_inc_source_cat_on_inc_source_cat_id", using: :btree
-  add_index "user_income_source_categories", ["user_id"], name: "index_user_income_source_categories_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
