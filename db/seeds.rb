@@ -86,6 +86,10 @@ inc_source_2.save
 #             payment_period_type: "Bi-Weekly"
 #       })
 # freq_of_payment.save
+h_rel = HouseholdRelationship.new({
+            relation_title: "Spouce"
+      })
+h_rel.save
 ho_mem = HouseholdMember.new({
       first_name: "Ima",
       last_name: "Member",
@@ -93,9 +97,12 @@ ho_mem = HouseholdMember.new({
       dob: Date.new(2001,2,3),
       gender: "female",
       ethnicity: "same",
-      user_id: user_1.id
+      user_id: user_1.id,
+      household_relationship_id: h_rel.id
       })
 ho_mem.save
+
+
 inc_source_3 = IncomeSource.new({
       source: "hustlin",
       amount_per_payment: 3454,

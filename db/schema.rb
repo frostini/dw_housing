@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728020854) do
+ActiveRecord::Schema.define(version: 20160728054712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20160728020854) do
 
   create_table "household_members", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "household_relationship_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "relationship"
@@ -119,7 +120,12 @@ ActiveRecord::Schema.define(version: 20160728020854) do
     t.datetime "updated_at"
   end
 
+  add_index "household_members", ["household_relationship_id"], name: "index_household_members_on_household_relationship_id", using: :btree
   add_index "household_members", ["user_id"], name: "index_household_members_on_user_id", using: :btree
+
+  create_table "household_relationships", force: :cascade do |t|
+    t.string "relation_title"
+  end
 
   create_table "income_source_categories", force: :cascade do |t|
     t.string   "inc_cat_name"
