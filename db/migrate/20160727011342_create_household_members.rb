@@ -8,6 +8,7 @@ class CreateHouseholdMembers < ActiveRecord::Migration
       t.date :dob
       t.string :gender
       t.string :ethnicity
+      t.timestamps
     end
   end
 end

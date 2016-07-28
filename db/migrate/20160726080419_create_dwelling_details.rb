@@ -4,6 +4,7 @@ class CreateDwellingDetails < ActiveRecord::Migration
       t.belongs_to :dwelling, index: true
       t.string :key
       t.string :value
+      t.timestamps
     end
   end
 end

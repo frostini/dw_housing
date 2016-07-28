@@ -3,6 +3,7 @@ class CreateRefAddressTypes < ActiveRecord::Migration
     create_table :ref_address_types do |t|
       t.string :address_type_code
       t.string :address_type_description
+      t.timestamps
     end
   end
 end

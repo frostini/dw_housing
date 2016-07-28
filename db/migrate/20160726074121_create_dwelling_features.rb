@@ -4,6 +4,7 @@ class CreateDwellingFeatures < ActiveRecord::Migration
     	t.belongs_to :amenity, index: true
     	t.belongs_to :dwelling, index: true
     	t.boolean :has_amenity?
+    	t.timestamps
     end
   end
 end

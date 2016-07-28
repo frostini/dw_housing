@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727230624) do
+ActiveRecord::Schema.define(version: 20160728003250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,9 @@ ActiveRecord::Schema.define(version: 20160727230624) do
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
   create_table "amenities", force: :cascade do |t|
-    t.string "amenity_name"
+    t.string   "amenity_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -50,17 +52,21 @@ ActiveRecord::Schema.define(version: 20160727230624) do
   add_index "contacts", ["dwelling_id"], name: "index_contacts_on_dwelling_id", using: :btree
 
   create_table "dwelling_details", force: :cascade do |t|
-    t.integer "dwelling_id"
-    t.string  "key"
-    t.string  "value"
+    t.integer  "dwelling_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "dwelling_details", ["dwelling_id"], name: "index_dwelling_details_on_dwelling_id", using: :btree
 
   create_table "dwelling_features", force: :cascade do |t|
-    t.integer "amenity_id"
-    t.integer "dwelling_id"
-    t.boolean "has_amenity?"
+    t.integer  "amenity_id"
+    t.integer  "dwelling_id"
+    t.boolean  "has_amenity?"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "dwelling_features", ["amenity_id"], name: "index_dwelling_features_on_amenity_id", using: :btree
@@ -90,26 +96,37 @@ ActiveRecord::Schema.define(version: 20160727230624) do
   add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
 
   create_table "household_expenses", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "expense_kind"
-    t.string  "entity"
-    t.string  "frequency"
-    t.float   "amount"
+    t.integer  "user_id"
+    t.string   "expense_kind"
+    t.string   "entity"
+    t.string   "frequency"
+    t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "household_expenses", ["user_id"], name: "index_household_expenses_on_user_id", using: :btree
 
   create_table "household_members", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "relationship"
-    t.date    "dob"
-    t.string  "gender"
-    t.string  "ethnicity"
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "relationship"
+    t.date     "dob"
+    t.string   "gender"
+    t.string   "ethnicity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "household_members", ["user_id"], name: "index_household_members_on_user_id", using: :btree
+
+  create_table "income_source_categories", force: :cascade do |t|
+    t.string   "inc_cat_name"
+    t.string   "inc_cat_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "income_sources", force: :cascade do |t|
     t.string   "source"
@@ -125,19 +142,33 @@ ActiveRecord::Schema.define(version: 20160727230624) do
   add_index "income_sources", ["incomeable_type", "incomeable_id"], name: "index_income_sources_on_incomeable_type_and_incomeable_id", using: :btree
 
   create_table "ref_address_types", force: :cascade do |t|
-    t.string "address_type_code"
-    t.string "address_type_description"
+    t.string   "address_type_code"
+    t.string   "address_type_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_addresses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "address_id"
-    t.integer "ref_address_type_id"
+    t.integer  "user_id"
+    t.integer  "address_id"
+    t.integer  "ref_address_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_addresses", ["address_id"], name: "index_user_addresses_on_address_id", using: :btree
   add_index "user_addresses", ["ref_address_type_id"], name: "index_user_addresses_on_ref_address_type_id", using: :btree
   add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
+
+  create_table "user_income_source_categories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "income_source_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_income_source_categories", ["income_source_category_id"], name: "index_usr_inc_source_cat_on_inc_source_cat_id", using: :btree
+  add_index "user_income_source_categories", ["user_id"], name: "index_user_income_source_categories_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
