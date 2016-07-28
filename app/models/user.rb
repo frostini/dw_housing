@@ -17,16 +17,13 @@ class User < ActiveRecord::Base
   has_many :user_addresses
 
   has_many :household_members
-
+belongs_to :gender
   has_many :income_sources, :as => :incomeable
   
   has_many :household_expenses
 
   has_many :income_source_categories, through: :user_income_source_categories
   has_many :user_income_source_categories
-
-
-
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
