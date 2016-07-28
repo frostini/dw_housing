@@ -6,6 +6,7 @@ class CreateHouseholdExpenses < ActiveRecord::Migration
       t.string :entity
       t.string :frequency
       t.float :amount
+      t.timestamps
     end
   end
 end

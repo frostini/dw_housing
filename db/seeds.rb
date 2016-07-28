@@ -32,6 +32,17 @@ user_2 = User.new({
 	admin: false
 	})
 user_2.save
+
+inc_s_cat = IncomeSourceCategory.new({
+            inc_cat_name: "w-2",
+      inc_cat_description: "this is a paystub for an employee"
+      })
+inc_s_cat.save
+u_inc_s_cat = UserIncomeSourceCategory.new({
+            user_id: user_1.id,
+            income_source_category: inc_s_cat
+      })
+u_inc_s_cat.save
 h_exp = HouseholdExpense.new({
       expense_kind: "Gas",
       entity: "SDGE",
