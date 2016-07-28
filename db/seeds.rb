@@ -5,7 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+pref = Preference.new({
+      preference_name: "Veteran"  
+      })
+pref.save
 gen = Gender.new({gender_group: "female"})
 gen.save
 gen_1 = Gender.new({gender_group: "male"})
@@ -27,6 +30,11 @@ user_1 = User.new({
       gender_id: gen_1.id
 	})
 user_1.save
+u_pref = UserPreference.new({
+            user_id: user_1.id,
+            preference_id: pref.id
+      })
+u_pref.save
 
 user_2 = User.new({
 	email: "hello@mail.com",
@@ -41,7 +49,11 @@ user_2 = User.new({
       gender_id: gen.id
 	})
 user_2.save
-
+u_pref_1 = UserPreference.new({
+            user_id: user_2.id,
+            preference_id: pref.id
+      })
+u_pref_1.save
 inc_s_cat_1 = IncomeSourceCategory.new({
             inc_cat_name: "w-2",
       inc_cat_description: "this is a paystub for an employee"

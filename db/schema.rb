@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728062942) do
+ActiveRecord::Schema.define(version: 20160728180444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,10 @@ ActiveRecord::Schema.define(version: 20160728062942) do
     t.datetime "updated_at"
   end
 
+  create_table "preferences", force: :cascade do |t|
+    t.string "preference_name"
+  end
+
   create_table "ref_address_types", force: :cascade do |t|
     t.string   "address_type_code"
     t.string   "address_type_description"
@@ -186,6 +190,14 @@ ActiveRecord::Schema.define(version: 20160728062942) do
   add_index "user_addresses", ["address_id"], name: "index_user_addresses_on_address_id", using: :btree
   add_index "user_addresses", ["ref_address_type_id"], name: "index_user_addresses_on_ref_address_type_id", using: :btree
   add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "preference_id"
+  end
+
+  add_index "user_preferences", ["preference_id"], name: "index_user_preferences_on_preference_id", using: :btree
+  add_index "user_preferences", ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -218,4 +230,6 @@ ActiveRecord::Schema.define(version: 20160728062942) do
   add_foreign_key "user_addresses", "addresses"
   add_foreign_key "user_addresses", "ref_address_types"
   add_foreign_key "user_addresses", "users"
+  add_foreign_key "user_preferences", "preferences"
+  add_foreign_key "user_preferences", "users"
 end

@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
 belongs_to :gender
 belongs_to :ethnicity
 
+  has_many :preferences, through: :user_preferences
+  has_many :user_preferences
+
   has_many :income_sources, :as => :incomeable
   
   has_many :household_expenses
