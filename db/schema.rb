@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728055746) do
+ActiveRecord::Schema.define(version: 20160728062942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,10 @@ ActiveRecord::Schema.define(version: 20160728055746) do
     t.datetime "updated_at"
   end
 
+  create_table "ethnicities", force: :cascade do |t|
+    t.string "ethnicity_group"
+  end
+
   create_table "floor_plans", force: :cascade do |t|
     t.integer  "dwelling_id"
     t.float    "bedrooms"
@@ -117,6 +121,7 @@ ActiveRecord::Schema.define(version: 20160728055746) do
     t.integer  "user_id"
     t.integer  "household_relationship_id"
     t.integer  "gender_id"
+    t.integer  "ethnicity_id"
     t.string   "first_name"
     t.string   "last_name"
     t.date     "dob"
@@ -125,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160728055746) do
     t.datetime "updated_at"
   end
 
+  add_index "household_members", ["ethnicity_id"], name: "index_household_members_on_ethnicity_id", using: :btree
   add_index "household_members", ["gender_id"], name: "index_household_members_on_gender_id", using: :btree
   add_index "household_members", ["household_relationship_id"], name: "index_household_members_on_household_relationship_id", using: :btree
   add_index "household_members", ["user_id"], name: "index_household_members_on_user_id", using: :btree
@@ -185,6 +191,7 @@ ActiveRecord::Schema.define(version: 20160728055746) do
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.integer  "gender_id"
+    t.integer  "ethnicity_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -204,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160728055746) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["ethnicity_id"], name: "index_users_on_ethnicity_id", using: :btree
   add_index "users", ["gender_id"], name: "index_users_on_gender_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

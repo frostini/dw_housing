@@ -4,6 +4,7 @@ class CreateHouseholdMembers < ActiveRecord::Migration
       t.belongs_to :user, index: true
       t.belongs_to :household_relationship, index: true
       t.belongs_to :gender, index: true
+      t.belongs_to :ethnicity, index: true
       t.string :first_name
       t.string :last_name
       t.date :dob
