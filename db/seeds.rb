@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+gen = Gender.new({gender_group: "female"})
+gen.save
+gen_1 = Gender.new({gender_group: "male"})
+gen_1.save
 
 
 user_1 = User.new({
@@ -17,7 +20,8 @@ user_1 = User.new({
 	last_name: "Frausto",
 	last_four: 1234,
 	user_type: "User::Applicant",
-	admin: true
+	admin: true,
+      gender_id: gen_1.id
 	})
 user_1.save
 
@@ -29,7 +33,8 @@ user_2 = User.new({
 	last_name: "Visitor",
 	last_four: 1234,
 	user_type: "User::Visitor",
-	admin: false
+	admin: false,
+      gender_id: gen.id
 	})
 user_2.save
 
@@ -90,12 +95,12 @@ h_rel = HouseholdRelationship.new({
             relation_title: "Spouce"
       })
 h_rel.save
+
 ho_mem = HouseholdMember.new({
       first_name: "Ima",
       last_name: "Member",
-      relationship: "sister",
       dob: Date.new(2001,2,3),
-      gender: "female",
+      gender_id: gen.id,
       ethnicity: "same",
       user_id: user_1.id,
       household_relationship_id: h_rel.id

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728054712) do
+ActiveRecord::Schema.define(version: 20160728055746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,12 @@ ActiveRecord::Schema.define(version: 20160728054712) do
 
   add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
 
+  create_table "genders", force: :cascade do |t|
+    t.string   "gender_group"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "household_expenses", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "expense_kind"
@@ -110,16 +116,16 @@ ActiveRecord::Schema.define(version: 20160728054712) do
   create_table "household_members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "household_relationship_id"
+    t.integer  "gender_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "relationship"
     t.date     "dob"
-    t.string   "gender"
     t.string   "ethnicity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "household_members", ["gender_id"], name: "index_household_members_on_gender_id", using: :btree
   add_index "household_members", ["household_relationship_id"], name: "index_household_members_on_household_relationship_id", using: :btree
   add_index "household_members", ["user_id"], name: "index_household_members_on_user_id", using: :btree
 
@@ -178,6 +184,7 @@ ActiveRecord::Schema.define(version: 20160728054712) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
+    t.integer  "gender_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -197,6 +204,7 @@ ActiveRecord::Schema.define(version: 20160728054712) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["gender_id"], name: "index_users_on_gender_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "user_addresses", "addresses"
