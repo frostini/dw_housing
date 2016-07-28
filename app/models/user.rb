@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_many :household_members
 belongs_to :gender
+belongs_to :ethnicity
+
   has_many :income_sources, :as => :incomeable
   
   has_many :household_expenses

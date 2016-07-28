@@ -10,8 +10,10 @@ gen = Gender.new({gender_group: "female"})
 gen.save
 gen_1 = Gender.new({gender_group: "male"})
 gen_1.save
-
-
+eth = Ethnicity.new({
+      ethnicity_group: "Colors"
+      })
+eth.save
 user_1 = User.new({
 	email: "marlon@mail.com",
 	password: "password",
@@ -20,6 +22,7 @@ user_1 = User.new({
 	last_name: "Frausto",
 	last_four: 1234,
 	user_type: "User::Applicant",
+      ethnicity_id: eth.id,
 	admin: true,
       gender_id: gen_1.id
 	})
@@ -33,6 +36,7 @@ user_2 = User.new({
 	last_name: "Visitor",
 	last_four: 1234,
 	user_type: "User::Visitor",
+      ethnicity_id: eth.id,
 	admin: false,
       gender_id: gen.id
 	})
@@ -101,7 +105,7 @@ ho_mem = HouseholdMember.new({
       last_name: "Member",
       dob: Date.new(2001,2,3),
       gender_id: gen.id,
-      ethnicity: "same",
+      ethnicity_id: eth.id,
       user_id: user_1.id,
       household_relationship_id: h_rel.id
       })
