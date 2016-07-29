@@ -18,7 +18,9 @@
   data-animsition-out-duration="800"
 >
        <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+       <p class="alert"><%= alert %>
+       <%= flash[:error] unless flash[:error].blank? %>
+       </p>
   
        
 <%= yield %>

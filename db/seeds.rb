@@ -260,7 +260,7 @@ use_add.save
 
 use_add_1 = UserAddress.new({
       address_id: address_1.id,
-      user_id: user_1.id,
+      user_id: user_2.id,
       ref_address_type_id: ref_ad_type.id
       })
 use_add_1.save

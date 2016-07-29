@@ -1,9 +1,33 @@
 <h2>Single User</h2>
 <% if user_signed_in? %>
-<h1>
-	Welcome <%=@current_user.email%>
-</h1>
+<!-- <h1> -->
+	Welcome <%=@user.email%>
 <%end%>
+
+	<p><%=@user.addresses.first.inspect%></p>
+	<p><%=@user.gender.inspect%></p>
+	<%if @user.income_sources.exists?%>
+		<p><%=@user.income_sources.inspect%></p>
+	<%end%>
+
+	<%if @user.household_members.exists? %>
+		<%@user.household_members.each do |h_m| %>
+				<p><%=h_m.inspect%></p>
+				<%if h_m.income_sources.exists?%>
+					<%h_m.income_sources.each do |inc_s|%>
+						<p><%=inc_s.inspect%></p><br>
+						<p><%=inc_s.payment_period.inspect%></p><br>
+					<%end%>
+				<%end%>
+				<p><%=h_m.household_relationship.inspect%></p>
+
+						<p><%=h_m.gender.inspect%></p>
+
+
+		<%end%>
+	<%end%>
+<!-- </h1> -->
+
 
 
 
@@ -11,5 +35,5 @@
 	You are an admin:
 </p>
 <p>
-	<%= @current_user.admin%>
+	<%= @user.admin%>
 </p>
