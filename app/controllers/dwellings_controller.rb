@@ -23,7 +23,7 @@ private
 		catch_not_found(id) unless @dwelling
 	end
 	def get_dwelling_id
-		 id = params[:id].to_i
+		 id = params[:id].to_i > 0 ? params[:id].to_i : params[:id]
 	end
 	def catch_not_found(record_id)
 		  flash[:error] = "Dwelling with ID ##{record_id} does not exist."

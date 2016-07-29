@@ -9,7 +9,7 @@ def create
     if @user.save
       sign_in @user
       redirect_to root_path
-      flash[:success] = "Welcome to Public Ads!"
+      flash[:success] = "Welcome to DwellWell Housing!"
     else
       flash[:error] = "Something went wrong!"
     end

@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   has_many :user_addresses
 
   has_many :household_members
-belongs_to :gender
-belongs_to :ethnicity
+  belongs_to :gender
+  belongs_to :ethnicity
 
   has_many :preferences, through: :user_preferences
   has_many :user_preferences
