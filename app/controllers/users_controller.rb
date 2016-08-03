@@ -43,9 +43,6 @@ private
       flash[:error] = "User with ID ##{record_id} does not exist."
       redirect_to root_path and return
   end
-
-
-
   def validate_user_page_view_access
       unless current_user.admin == true
         unless current_user and current_user.id.to_s === params[:id] 

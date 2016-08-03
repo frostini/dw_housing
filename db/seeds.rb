@@ -103,10 +103,7 @@ inc_source_2 = IncomeSource.new({
 })
 inc_source_2.save
 
-# freq_of_payment = FrequencyOfPayment.new({
-#             payment_period_type: "Bi-Weekly"
-#       })
-# freq_of_payment.save
+
 h_rel = HouseholdRelationship.new({
             relation_title: "Spouce"
       })
@@ -187,32 +184,17 @@ address_2 = Address.new({
 })
 address_2.save
 
-
 contact = Contact.new({
-      first_name: "Joe",
-      last_name: "Schmoe",
-      phone_number: 5674455676,
-      email_address: "joe@schmoe.com",
-      dwelling_id: dwelling.id
+      contact_category: "email"
       })
-
 contact.save
 
-
-
-address_4 = Address.new({
-      line_1: "1350 Golden Gate Ave.",
-      line_2: "Unit #5",
-      city: "San Francisco",
-      state: "CA",
-      zipcode: 94115,
-      country: "USA",
-      latitude: 37.779697,
-      longitude: -122.4351404,
-      addressable_type: "Contact",
-      addressable_id: contact.id
-})
-address_4.save
+u_of_c = UserContact.new({
+      user_id: user_2.id,
+      contact_id: contact.id,
+      value: "somes@email.com"
+      })
+u_of_c.save
 
 
 am = Amenity.new(amenity_name: "stuff")
@@ -246,8 +228,6 @@ address_1 = Address.new({
       country: "USA",
       latitude: 37.7773228,
       longitude: -122.4272052
-      # addressable_type: "User",
-      # addressable_id: contact.id
 })
 address_1.save
 
@@ -264,57 +244,4 @@ use_add_1 = UserAddress.new({
       ref_address_type_id: ref_ad_type.id
       })
 use_add_1.save
-
-
-
-# address_3 = user_2.addresses.new({
-#       line_1: "1415 Larkin St.",
-#       city: "San Francisco",
-#       state: "CA",
-#       zipcode: 94109,
-#       country: "USA",
-#       latitude: 37.7910904,
-#       longitude: -122.419305
-# })
-# address_3.save
-
-
-
-
-# 3001 Laguna St
-# San Francisco,
-# CA,
-# 94123
-# 37.7989015
-# -122.4309949
-
-# address_1 = Address.
-
-
-# Artis Building
-
-# 537 Octavia St.
-# San Francisco, CA 94102
-
-# 37.7773228,-122.4272052
-
-
-
-# Awesomeness Castle
-
-# 1350 Golden Gate Ave.
-# San Francisco, CA 94115
-
-# 37.779697,-122.4351404
-
-
-
-# Contraband Coffee Bar
-# 1415 Larkin St.
-# San Francisco, CA 94109
-
-# 37.7910904,-122.419305
-
-
-
 
