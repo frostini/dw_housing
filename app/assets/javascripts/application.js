@@ -13,3 +13,44 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+// var appClient = {};
+ // appClient = (function( $ ) {
+	// 'use strict';
+	// var initNoUISlider = {};
+	// appClient.initNoUISlider = function() {
+	$( document ).ready(function() {
+var snapSlider = document.getElementById('nonlinear');
+
+noUiSlider.create(snapSlider, {
+	connect: true,
+	start: [ 500, 4000 ],
+	range: {
+		'min': [     0 ],
+		'10%': [   500,  500 ],
+		'50%': [  4000, 1000 ],
+		'max': [ 10000 ]
+	}
+
+});
+
+var snapValues = [
+	document.getElementById('slider-snap-value-lower'),
+	document.getElementById('slider-snap-value-upper')
+];
+
+snapSlider.noUiSlider.on('update', function( values, handle ) {
+	snapValues[handle].innerHTML = values[handle];
+});
+
+});
+
+	// },
+	// appClient.ready = function() {
+		// appClient.initNoUISlider();
+	// };
+	// return {
+		// ready: appClient.ready()
+	// }
+// })( jQuery );
+
+// jQuery( appClient.ready );

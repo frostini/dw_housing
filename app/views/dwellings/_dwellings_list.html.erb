@@ -1,0 +1,9 @@
+<div style="padding-top:50px;">
+<p><%=@dwellings.inspect%></p>
+	<%@dwellings.each do |d|%>
+	<p><%=d.try(:address).inspect%></p>
+	<p><%=d.floor_plans.first.inspect%></p>
+	<p><%=d.amenities.first.inspect%></p>
+	<p><%=d.dwelling_details.first.inspect%></p>
+	<%end%>
+</div>

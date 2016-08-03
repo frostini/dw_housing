@@ -2,9 +2,8 @@ class DwellingsController < ApplicationController
 before_action :authenticate_user!, only: [:edit, :new]
 before_action :set_dwelling_context, only: [:edit, :show]
 
-ASSOCIATED_OBJECTS = [:address, :contacts,
-										:floor_plans, :amenities,
-										:dwelling_details]
+ASSOCIATED_OBJECTS = [:address, :floor_plans, 
+											:amenities, :dwelling_details]
 
 	def index
 		@dwellings = Dwelling.all.includes(ASSOCIATED_OBJECTS)
@@ -14,6 +13,9 @@ ASSOCIATED_OBJECTS = [:address, :contacts,
 	def new
 	end
 	def edit
+	end
+	def search
+		binding.pry
 	end
 private
 	def set_dwelling_context

@@ -1,9 +1,22 @@
 <h1>Hello index for dwelling</h1>
-<p><%=@dwellings.inspect%></p>
-<%@dwellings.each do |d|%>
-<p><%=d.try(:address).inspect%></p>
-<p><%=d.contacts.first.inspect%></p>
-<p><%=d.floor_plans.first.inspect%></p>
-<p><%=d.amenities.first.inspect%></p>
-<p><%=d.dwelling_details.first.inspect%></p>
+
+
+<%= form_tag("/search", method: "get", remote: true) do %>
+	 <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= options_from_collection_for_select(Amenity.all, :id, :amenity_name) %>
+  <%= submit_tag("Search") %>
 <%end%>
+
+
+<div id="nonlinear" class="w-80-p c-w-m"></div>
+<span class="example-val" id="slider-snap-value-lower"></span>
+<span class="example-val" id="slider-snap-value-upper"></span>
+
+
+
+<div style="padding-top:50px;">
+<p><%=@dwellings.inspect%></p>
+</div>
+
+<%= render "dwellings_list" %>

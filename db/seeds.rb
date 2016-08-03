@@ -199,6 +199,12 @@ u_of_c.save
 
 am = Amenity.new(amenity_name: "stuff")
 am.save
+am = Amenity.new(amenity_name: "another")
+am.save
+am = Amenity.new(amenity_name: "yet")
+am.save
+am = Amenity.new(amenity_name: "ahh")
+am.save
 yes= DwellingFeature.new(amenity_id: am.id, dwelling_id: dwelling.id, has_amenity?: true)
 yes.save
 
