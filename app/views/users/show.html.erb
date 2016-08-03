@@ -3,7 +3,21 @@
 <!-- <h1> -->
 	Welcome <%=@user.email%>
 <%end%>
+<div class="user-profile">
+	<div class="u_p_components">
 
+		<div class="user_identification">
+			<%=@user.inspect%>
+		</div>
+		<div class="user_persona">
+			<%=@user.gender%>
+			<%=@user.ehtnicity%>
+		</div>
+		<div class="contact_information">
+			
+		</div>
+	</div>
+</div>
 	<p><%=@user.addresses.first.inspect%></p>
 	<p><%=@user.gender.inspect%></p>
 	<%if @user.income_sources.exists?%>

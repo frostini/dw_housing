@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728180444) do
+ActiveRecord::Schema.define(version: 20160803012945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,16 +40,10 @@ ActiveRecord::Schema.define(version: 20160728180444) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer  "dwelling_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "phone_number",  limit: 8
-    t.string   "email_address"
+    t.string   "contact_category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "contacts", ["dwelling_id"], name: "index_contacts_on_dwelling_id", using: :btree
 
   create_table "dwelling_details", force: :cascade do |t|
     t.integer  "dwelling_id"
@@ -191,6 +185,15 @@ ActiveRecord::Schema.define(version: 20160728180444) do
   add_index "user_addresses", ["ref_address_type_id"], name: "index_user_addresses_on_ref_address_type_id", using: :btree
   add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
 
+  create_table "user_contacts", force: :cascade do |t|
+    t.string  "value"
+    t.integer "user_id"
+    t.integer "contact_id"
+  end
+
+  add_index "user_contacts", ["contact_id"], name: "index_user_contacts_on_contact_id", using: :btree
+  add_index "user_contacts", ["user_id"], name: "index_user_contacts_on_user_id", using: :btree
+
   create_table "user_preferences", force: :cascade do |t|
     t.integer "user_id"
     t.integer "preference_id"
@@ -230,6 +233,8 @@ ActiveRecord::Schema.define(version: 20160728180444) do
   add_foreign_key "user_addresses", "addresses"
   add_foreign_key "user_addresses", "ref_address_types"
   add_foreign_key "user_addresses", "users"
+  add_foreign_key "user_contacts", "contacts"
+  add_foreign_key "user_contacts", "users"
   add_foreign_key "user_preferences", "preferences"
   add_foreign_key "user_preferences", "users"
 end

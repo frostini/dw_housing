@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :contacts, :as => :contactable, through: :user_contacts
+  has_many :user_contacts
+
+
   def self.user_types
     ["applicant" => APPLICANT, "visitor" => VISITOR]
   end
