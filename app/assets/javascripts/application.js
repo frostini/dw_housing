@@ -60,18 +60,27 @@ proximitySlider.noUiSlider.on('update', function( values, handle ) {
 	proximitySnapValues[handle].innerHTML = values[handle];
 });
 
-	;$( "input#distance_slider" ).on( "click",  function( event ) {
+	;$( "input#dwelling_search_form" ).on( "click",  function( event ) {
 	  event.stopImmediatePropagation();
 	  var inputValue = '',
+	  secondValues = '',
 	  		distanceInMiles = '';
+	  var distanceSlider = document.getElementById('monthly_payment');
 	  var connectSlider = document.getElementById('nonlinear');
 	  console.log('hit the input slider');
 			  inputValue = connectSlider.noUiSlider.get();
+			  secondValues = distanceSlider.noUiSlider.get();
 			  console.log(inputValue);
-	  var lowerDistanceInMiles = inputValue[0];
+	  var lowerPriceInDollars = secondValues[0];
+	  var higherPriceInDollars = secondValues[1];
+	  	  var lowerDistanceInMiles = inputValue[0];
 	  var higherDistanceInMiles = inputValue[1];
 		$('#proximity_lower').val(lowerDistanceInMiles);
 		$('#proximity_higher').val(higherDistanceInMiles);
+
+		$('#price_lower').val(lowerPriceInDollars);
+		$('#price_higher').val(higherPriceInDollars);
+
 	  $('#search_form').submit();
 	});
 
