@@ -1,19 +1,46 @@
 <h1>Hello index for dwelling</h1>
 
 
-<%= form_tag("/search", method: "get", remote: true) do %>
-	 <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= options_from_collection_for_select(Amenity.all, :id, :amenity_name) %>
-  <%= submit_tag("Search") %>
+<%= form_tag("/search", method: "get", remote: true, id: "search-form") do %>
+	 <%= label_tag(:distance, "Search for:") %>
+  <%= text_field_tag(:distance) %>
+
+  <div style="width:100px;height:20px;border: 1px black solid;">
+<%= check_box_tag(:apartment, "true", true) %>
+<%= label_tag(:apartment, "Apartment") %>
+</div>
+<div style="width:100px;height:20px;border: 1px black solid;">
+<%= check_box_tag(:townhome, "true", true) %>
+<%= label_tag(:townhome, "Townhome") %>
+</div>
+<div style="width:100px;height:20px;border: 1px black solid;">
+<%= check_box_tag(:detached, "true", true) %>
+<%= label_tag(:detached, "Detached") %>
+</div>
+<%= hidden_field_tag('proximity_lower')%> 
+<%= hidden_field_tag('proximity_higher')%> 
+<%= label_tag(:bedrooms, "bathrooms") %>
+<%= select_tag(:bedrooms, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+<%= label_tag(:bathrooms, "bathrooms") %>
+<%= select_tag(:bathrooms, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+<%= label_tag(:occupants, "occupants") %>
+<%= select_tag(:occupants, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+
+
+
+  <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
 <%end%>
 
-
-<div id="nonlinear" class="w-80-p c-w-m"></div>
+<div style="padding:20px 10%;">
+<div id="monthly_payment" class="w-80-p c-w-m"></div>
 <span class="example-val" id="slider-snap-value-lower"></span>
 <span class="example-val" id="slider-snap-value-upper"></span>
-
-
+</div>
+<div style="padding:20px 10%;">
+<div id="nonlinear" class="w-80-p c-w-m"></div>
+<span class="example-val" id="slider-snap-value-lower_1"></span>
+<span class="example-val" id="slider-snap-value-upper_2"></span>
+</div>
 
 <div style="padding-top:50px;">
 <p><%=@dwellings.inspect%></p>

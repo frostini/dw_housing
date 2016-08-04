@@ -141,6 +141,8 @@ dwelling = Dwelling.new({
 	})
 dwelling.save
 
+d_cat = DwellingCategory.new({name:"Apartment"})
+d_cat.save
 floor_plan = FloorPlan.new({
       dwelling_id: dwelling.id,
       bedrooms: 1,
@@ -150,7 +152,8 @@ floor_plan = FloorPlan.new({
       mo_rent_min: 500,
       mo_rent_max: 800,
       sq_ft_min: 450,
-      sq_ft_max: 520
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
 })
 floor_plan.save
 
@@ -163,7 +166,8 @@ floor_plan_2 = FloorPlan.new({
       mo_rent_min: 600,
       mo_rent_max: 900,
       sq_ft_min: 550,
-      sq_ft_max: 650
+      sq_ft_max: 650,
+      dwelling_category_id: d_cat.id
 })
 floor_plan_2.save
 
