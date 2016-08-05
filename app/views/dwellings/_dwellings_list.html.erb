@@ -1,9 +1,13 @@
 <div style="padding-top:50px;">
-<p><%=@dwellings.inspect%></p>
+<p>DWELLING COUNT: <%=@dwellings.count%></p>
 	<%@dwellings.each do |d|%>
+	<p>DWELLING ID: <%=d.id%></p>
 	<p><%=d.try(:address).inspect%></p>
+	<p>FLOOR PLAN COUNT: <%=d.floor_plans.count%></p>
 	<p><%=d.floor_plans.first.inspect%></p>
+	<p>AMENITY COUNT: <%=d.amenities.count%></p>
 	<p><%=d.amenities.first.inspect%></p>
+	<p>DWELLING DETAILS COUNT: <%=d.dwelling_details.count%></p>
 	<p><%=d.dwelling_details.first.inspect%></p>
 	<%end%>
 </div>

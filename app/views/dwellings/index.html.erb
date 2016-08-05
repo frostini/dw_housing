@@ -5,18 +5,7 @@
 	 <%= label_tag(:distance, "Search for:") %>
   <%= text_field_tag(:distance) %>
 
-  <div style="width:100px;height:20px;border: 1px black solid;">
-<%= check_box(:dwelling_type, "apartment", {class: ''}, "yes", "no") %>
-<%= label_tag(:dwelling_type, "apartment") %>
-</div>
-<div style="width:100px;height:20px;border: 1px black solid;">
-<%= check_box(:dwelling_type, "townhome", {class: ''}, "yes", "no") %>
-<%= label_tag(:dwelling_type, "townhome") %>
-</div>
-<div style="width:100px;height:20px;border: 1px black solid;">
-<%= check_box(:dwelling_type, "detached", {class: ''}, "yes", "no") %>
-<%= label_tag(:dwelling_type, "Detached") %>
-</div>
+
 <%= hidden_field_tag('proximity_lower')%> 
 <%= hidden_field_tag('proximity_higher')%> 
 
@@ -24,11 +13,11 @@
 <%= hidden_field_tag('price_higher')%> 
 
 <%= label_tag(:bedrooms, "bedrooms") %>
-<%= select_tag(:bedrooms, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+<%= select_tag(:bedrooms, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
 <%= label_tag(:baths, "bathrooms") %>
-<%= select_tag(:baths, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+<%= select_tag(:baths, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
 <%= label_tag(:occupants, "occupants") %>
-<%= select_tag(:occupants, options_for_select([['All', 0], ['1+', 1]], 0)) %>
+<%= select_tag(:occupants, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
 
 
 
@@ -49,5 +38,6 @@
 <div style="padding-top:50px;">
 <p><%=@dwellings.inspect%></p>
 </div>
-
-<%= render "dwellings_list" %>
+<div id="items_list">
+<%= render partial: "dwellings_list", locals: {dwellings: @dwellings} %>
+</div>

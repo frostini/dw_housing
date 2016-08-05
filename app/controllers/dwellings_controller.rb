@@ -5,8 +5,6 @@ before_action :set_dwelling_context, only: [:edit, :show]
 ASSOCIATED_OBJECTS = [:address, :floor_plans, 
 											:amenities, :dwelling_details]
 
-
-
 	def index
 		@dwellings = Dwelling.all.includes(ASSOCIATED_OBJECTS)
 	end
@@ -17,16 +15,19 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	def edit
 	end
 	def search
-		# bedroom_number = params[:bedrooms].to_i
-		example = params.slice(:bedrooms, :baths)
-		example[:bedrooms] = example[:bedrooms].to_i
-		example[:baths] = example[:baths].to_i
+		# @dwellings = nil
+		@dwellings = FloorPlan.search_filter(floor_plan_params)
+														.includes(dwelling: ASSOCIATED_OBJECTS)
+		      										.map {|floor_plan| floor_plan.dwelling }
+		      											.uniq
 
-		@floor_plans = FloorPlan.search_filter(example)
-		      binding.pry
-		# @dwellings = @dwellings.includes(:bedrooms)
 	end
 private
+	def floor_plan_params
+		params.slice(:bedrooms, :baths, :occupants)
+	end
+	def sanitize_values()
+	end
 	def set_dwelling_context
 		id = get_dwelling_id
 		@dwelling =  Dwelling.includes(ASSOCIATED_OBJECTS)

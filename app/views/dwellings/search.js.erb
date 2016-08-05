@@ -1,1 +1,4 @@
 console.log("hit search js")
+
+    $("#items_list").html("<%= escape_javascript(render partial: 'dwellings_list', locals: { dwellings: @dwellings } ) %>"); 
+    console.log("updates listings");

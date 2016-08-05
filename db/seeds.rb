@@ -159,10 +159,10 @@ floor_plan.save
 
 floor_plan_2 = FloorPlan.new({
       dwelling_id: dwelling.id,
-      bedrooms: 2,
-      baths: 2,
+      bedrooms: 4,
+      baths: 3,
       occupant_min: 2,
-      occupant_max: 3,
+      occupant_max: 4,
       mo_rent_min: 600,
       mo_rent_max: 900,
       sq_ft_min: 550,
