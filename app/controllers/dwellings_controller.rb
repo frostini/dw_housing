@@ -16,11 +16,13 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	end
 	def search
 		# @dwellings = nil
+		# params[:location]
+		@addreses = Address.near(params[:location], 5)
 		@dwellings = FloorPlan.search_filter(floor_plan_params)
 														.includes(dwelling: ASSOCIATED_OBJECTS)
 		      										.map {|floor_plan| floor_plan.dwelling }
 		      											.uniq
-
+binding.pry
 	end
 private
 	def floor_plan_params

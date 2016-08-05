@@ -11,4 +11,7 @@ module Filterable
 
     end
   end
+  def distance_filter(filtering_params)
+    
+  end
 end

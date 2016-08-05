@@ -2,8 +2,8 @@
 
 
 <%= form_tag("/search", method: "get", remote: true, id: "search-form") do %>
-	 <%= label_tag(:distance, "Search for:") %>
-  <%= text_field_tag(:distance) %>
+	 <%= label_tag(:location, "Search for:") %>
+  <%= text_field_tag(:location) %>
 
 
 <%= hidden_field_tag('proximity_lower')%> 
