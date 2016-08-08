@@ -17,13 +17,50 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	def search
 		# @dwellings = nil
 		# params[:location]
-		@addreses = Address.near(params[:location], 5)
-		@dwellings = FloorPlan.search_filter(floor_plan_params)
-														.includes(dwelling: ASSOCIATED_OBJECTS)
-		      										.map {|floor_plan| floor_plan.dwelling }
-		      											.uniq
+
+
+
+
+@dwellings = Address.near(params[:location], 5).includes(dwelling: ASSOCIATED_OBJECTS)
+							# .map {|address| address.addressable}
+		# .where(floor_plans: [:bedrooms, :baths, :occupants])
+
+		# @dwellings = Address.near(params[:location], 5)
+		# 										.is_dwelling
+		# 											.includes(addressable: [:floor_plans, :amenities, :dwelling_details])
+		# 												.map {|address| address.addressable}
+		# 										.searchable_filter(floor_plan_params, :floor_plans)
+		# 													# .uniq
 binding.pry
-	end
+end
+	# def dwellings_with_associations_preloaded
+	# end
+# 		@dwellings = @addresses.floor_plans.search_filter(floor_plan_params)
+
+# Address.near(params[:location], 5)
+# 	.includes(addressable: [:floor_plans, :amenities, :dwelling_details])
+# 		.where(floor_plans: floor_plan_params)
+# 			.map {|address| address.addressable}
+
+# .where(:floor_plans => floor_plan_params, joins: floor_plans)
+# @readings = Reading.includes(region: { stores: :manager }).where(
+#   manager: { name: 'John Smith' },
+#   region: { id: 1234567 })
+# end
+    # def searchable_filter(filtering_params)
+    #   results = self.where(nil)
+    #   filtering_params.each do |key, value|
+    #     results = results.public_send(key, value) if value.present?
+    #   end
+    #   results
+
+    # end
+
+		# @dwellings = FloorPlan.search_filter(floor_plan_params)
+														# .includes(dwelling: ASSOCIATED_OBJECTS)
+		      										# .map {|floor_plan| floor_plan.dwelling }
+		      											# .uniq
+	# end
 private
 	def floor_plan_params
 		params.slice(:bedrooms, :baths, :occupants)

@@ -311,6 +311,32 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_0.id
 })
 address_7.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_0.id,
+      bedrooms: 2,
+      baths: 3,
+      occupant_min: 3,
+      occupant_max: 4,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_0.id,
+      bedrooms: 6,
+      baths: 3,
+      occupant_min: 3,
+      occupant_max: 8,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
 address_2 = Address.new({
 line_1: "262 Divisadero St",
 city: "San Francisco",
@@ -320,6 +346,32 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_11.id
 })
 address_2.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_11.id,
+      bedrooms: 2,
+      baths: 1,
+      occupant_min: 1,
+      occupant_max: 2,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_11.id,
+      bedrooms: 2,
+      baths: 3,
+      occupant_min: 2,
+      occupant_max: 4,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
 address_3 = Address.new({
 line_1: "2197 Fillmore St",
 city: "San Francisco",
@@ -329,6 +381,32 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_22.id
 })
 address_3.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_22.id,
+      bedrooms: 3,
+      baths: 3,
+      occupant_min: 4,
+      occupant_max: 7,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
+floor_plan = FloorPlan.new({
+      dwelling_id: dwelling_22.id,
+      bedrooms: 4,
+      baths: 2,
+      occupant_min: 4,
+      occupant_max: 10,
+      mo_rent_min: 500,
+      mo_rent_max: 800,
+      sq_ft_min: 450,
+      sq_ft_max: 520,
+      dwelling_category_id: d_cat.id
+})
+floor_plan.save
 address_4= Address.new({
 line_1: "7438 Mission St",
 city: "Daly City",

@@ -11,5 +11,7 @@ class Dwelling < ActiveRecord::Base
 	has_many :floor_plans, dependent: :destroy
 
 
-
+# scope :sought_floor_plan, Proc.new{ |search_term|
+#   joins(:categories).where("upper(categories.title) like ?", search_term.upcase) 
+# }
 end
