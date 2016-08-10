@@ -2,6 +2,7 @@ class CreateFloorPlans < ActiveRecord::Migration
   def change
     create_table :floor_plans do |t|
       t.belongs_to :dwelling, index: true
+      t.belongs_to :dwelling_category, index: true
       t.float :bedrooms
       t.float :baths
       t.integer :occupant_min

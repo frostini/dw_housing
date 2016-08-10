@@ -17,10 +17,9 @@
   data-animsition-out-class="fade-out"
   data-animsition-out-duration="800"
 >
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %>
-       <%= flash[:error] unless flash[:error].blank? %>
-       </p>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
   
        
 <%= yield %>

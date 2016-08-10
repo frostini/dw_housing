@@ -1,0 +1,10 @@
+<div style="padding-top:50px;">
+<p>DWELLING COUNT: <%=dwellings.count(:all)%></p>
+	
+	<%dwellings.each do |d|%>
+	<p><%=d.inspect%></p>
+	<p><%=d.address.inspect%></p>
+	<p><%=d.floor_plans.inspect%></p>
+
+	<%end%>
+</div>

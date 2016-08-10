@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803012945) do
+ActiveRecord::Schema.define(version: 20160803070921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20160803012945) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "contact_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dwelling_categories", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160803012945) do
 
   create_table "floor_plans", force: :cascade do |t|
     t.integer  "dwelling_id"
+    t.integer  "dwelling_category_id"
     t.float    "bedrooms"
     t.float    "baths"
     t.integer  "occupant_min"
@@ -91,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160803012945) do
     t.datetime "updated_at"
   end
 
+  add_index "floor_plans", ["dwelling_category_id"], name: "index_floor_plans_on_dwelling_category_id", using: :btree
   add_index "floor_plans", ["dwelling_id"], name: "index_floor_plans_on_dwelling_id", using: :btree
 
   create_table "genders", force: :cascade do |t|

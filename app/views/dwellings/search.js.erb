@@ -1,0 +1,4 @@
+console.log("hit search js")
+
+    $("#items_list").html("<%= j render(:partial => 'dwellings_list', :locals => { :dwellings => @dwellings } ).html_safe %>"); 
+    console.log("updates listings");
