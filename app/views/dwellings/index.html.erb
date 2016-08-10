@@ -6,18 +6,18 @@
   <%= text_field_tag(:location) %>
 
 
-<%= hidden_field_tag('proximity_lower')%> 
-<%= hidden_field_tag('proximity_higher')%> 
+<%= hidden_field_tag('search_proximity')%> 
 
-<%= hidden_field_tag('price_lower')%> 
-<%= hidden_field_tag('price_higher')%> 
+
+<%= hidden_field_tag('mo_rent_price')%> 
+
 
 <%= label_tag(:bedrooms, "bedrooms") %>
-<%= select_tag(:bedrooms, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
+<%= select_tag(:bedrooms, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
 <%= label_tag(:baths, "bathrooms") %>
-<%= select_tag(:baths, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
+<%= select_tag(:baths, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
 <%= label_tag(:occupants, "occupants") %>
-<%= select_tag(:occupants, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4]], 0)) %>
+<%= select_tag(:occupants, options_for_select([['All', nil], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9] ], 0)) %>
 
 
 
@@ -27,12 +27,12 @@
 <div style="padding:20px 10%;">
 <div id="monthly_payment" class="w-80-p c-w-m"></div>
 <span class="example-val" id="slider-snap-value-lower"></span>
-<span class="example-val" id="slider-snap-value-upper"></span>
+
 </div>
 <div style="padding:20px 10%;">
 <div id="nonlinear" class="w-80-p c-w-m"></div>
 <span class="example-val" id="slider-snap-value-lower_1"></span>
-<span class="example-val" id="slider-snap-value-upper_2"></span>
+
 </div>
 
 <div style="padding-top:50px;">

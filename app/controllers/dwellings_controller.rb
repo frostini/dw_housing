@@ -14,7 +14,8 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	def edit
 	end
 	def search
-		addresses_within_range = Address.near(params[:location], 5).where(addressable_type: "Dwelling")
+		# binding.pry
+		addresses_within_range = Address.near(params[:location], params[:search_proximity]).where(addressable_type: "Dwelling")
 		matching_floor_plans = FloorPlan.search_filter(floor_plan_params).select(:dwelling_id, :id)
 		address_ids, floor_plan_ids = [], []
 		addresses_within_range.map {|x| address_ids << x.addressable_id}
@@ -25,9 +26,9 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 
 private
 	def floor_plan_params
-		params.slice(:bedrooms, :baths, :occupants)
+		params.slice(:bedrooms, :baths, :occupants, :mo_rent_price)
 	end
-	def sanitize_values()
+	def sanitize_values
 	end
 	def set_dwelling_context
 		id = get_dwelling_id
