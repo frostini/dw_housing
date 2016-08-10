@@ -4,9 +4,8 @@ before_action :set_dwelling_context, only: [:edit, :show]
 
 ASSOCIATED_OBJECTS = [:address, :floor_plans, 
 											:amenities, :dwelling_details]
-
 	def index
-		@dwellings = Dwelling.all.includes(ASSOCIATED_OBJECTS)
+		@dwellings = Dwelling.includes(:address)
 	end
 	def show
 	end
@@ -15,52 +14,15 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	def edit
 	end
 	def search
-		# @dwellings = nil
-		# params[:location]
+		addresses_within_range = Address.near(params[:location], 5).where(addressable_type: "Dwelling")
+		matching_floor_plans = FloorPlan.search_filter(floor_plan_params).select(:dwelling_id, :id)
+		address_ids, floor_plan_ids = [], []
+		addresses_within_range.map {|x| address_ids << x.addressable_id}
+		matching_floor_plans.map { |x| floor_plan_ids << x.dwelling_id}
+		filtered_dwelling_ids = address_ids & floor_plan_ids
+		@dwellings = Dwelling.includes(ASSOCIATED_OBJECTS).where('id IN (?)', filtered_dwelling_ids)
+	end
 
-
-
-
-@dwellings = Address.near(params[:location], 5).includes(dwelling: ASSOCIATED_OBJECTS)
-							# .map {|address| address.addressable}
-		# .where(floor_plans: [:bedrooms, :baths, :occupants])
-
-		# @dwellings = Address.near(params[:location], 5)
-		# 										.is_dwelling
-		# 											.includes(addressable: [:floor_plans, :amenities, :dwelling_details])
-		# 												.map {|address| address.addressable}
-		# 										.searchable_filter(floor_plan_params, :floor_plans)
-		# 													# .uniq
-binding.pry
-end
-	# def dwellings_with_associations_preloaded
-	# end
-# 		@dwellings = @addresses.floor_plans.search_filter(floor_plan_params)
-
-# Address.near(params[:location], 5)
-# 	.includes(addressable: [:floor_plans, :amenities, :dwelling_details])
-# 		.where(floor_plans: floor_plan_params)
-# 			.map {|address| address.addressable}
-
-# .where(:floor_plans => floor_plan_params, joins: floor_plans)
-# @readings = Reading.includes(region: { stores: :manager }).where(
-#   manager: { name: 'John Smith' },
-#   region: { id: 1234567 })
-# end
-    # def searchable_filter(filtering_params)
-    #   results = self.where(nil)
-    #   filtering_params.each do |key, value|
-    #     results = results.public_send(key, value) if value.present?
-    #   end
-    #   results
-
-    # end
-
-		# @dwellings = FloorPlan.search_filter(floor_plan_params)
-														# .includes(dwelling: ASSOCIATED_OBJECTS)
-		      										# .map {|floor_plan| floor_plan.dwelling }
-		      											# .uniq
-	# end
 private
 	def floor_plan_params
 		params.slice(:bedrooms, :baths, :occupants)

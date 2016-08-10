@@ -1,5 +1,5 @@
 class FloorPlan < ActiveRecord::Base
-# include Filterable
+include Filterable
 
 	belongs_to :dwelling
 	belongs_to :dwelling_category

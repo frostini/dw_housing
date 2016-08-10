@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
 
 	# scope :is_dwelling, -> (addres_type = "Dwelling") { where("addressable_type like ?", addres_type)}
 	# belongs_to :dwelling, -> { where(address: {addressable_type: 'Dwelling'}) }, foreign_key: 'addressable_id'
-belongs_to :dwelling, -> { includes(:address).where(addresses: {addressable_type: "Dwelling"})}, foreign_key: :addressable_id
+# belongs_to :dwelling, -> { includes(:address).where(addresses: {addressable_type: "Dwelling"})}, foreign_key: :addressable_id
 
 
 
