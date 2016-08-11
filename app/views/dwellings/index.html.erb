@@ -3,7 +3,7 @@
 
 <%= form_tag("/search", method: "get", remote: true, id: "search-form") do %>
 	 <%= label_tag(:location, "Search for:") %>
-  <%= text_field_tag(:location) %>
+  <%= text_field_tag(:location, nil, :required => true, placeholder: "City or Zip Code") %>
 
 
 <%= hidden_field_tag('search_proximity')%> 

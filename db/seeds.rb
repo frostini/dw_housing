@@ -416,6 +416,20 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_33.id
 })
 address_4.save
+floor_plan_2 = FloorPlan.new({
+      dwelling_id: dwelling_33.id,
+      bedrooms: 4,
+      baths: 3,
+      occupant_min: 2,
+      occupant_max: 4,
+      mo_rent_min: 600,
+      mo_rent_max: 900,
+      sq_ft_min: 550,
+      sq_ft_max: 650,
+      dwelling_category_id: d_cat.id
+})
+floor_plan_2.save
+
 address_5= Address.new({
 line_1: "49 Serramonte Center",
 city: "Daly City",
@@ -425,6 +439,20 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_44.id
 })
 address_5.save
+floor_plan_2 = FloorPlan.new({
+      dwelling_id: dwelling_44.id,
+      bedrooms: 4,
+      baths: 3,
+      occupant_min: 2,
+      occupant_max: 4,
+      mo_rent_min: 600,
+      mo_rent_max: 900,
+      sq_ft_min: 550,
+      sq_ft_max: 650,
+      dwelling_category_id: d_cat.id
+})
+floor_plan_2.save
+
 address_6 = Address.new({
 line_1: "321 Gellert Blvd",
 city: "Daly City",
@@ -434,4 +462,17 @@ addressable_type: "Dwelling",
 addressable_id: dwelling_55.id
 })
 address_6.save
+floor_plan_2 = FloorPlan.new({
+      dwelling_id: dwelling_55.id,
+      bedrooms: 4,
+      baths: 3,
+      occupant_min: 2,
+      occupant_max: 4,
+      mo_rent_min: 600,
+      mo_rent_max: 900,
+      sq_ft_min: 550,
+      sq_ft_max: 650,
+      dwelling_category_id: d_cat.id
+})
+floor_plan_2.save
 
