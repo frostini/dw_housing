@@ -14,7 +14,10 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	def edit
 	end
 	def search
-		# binding.pry
+		if params[:location].blank?
+			flash[:error].now = "Please include a location"
+			return
+		end
 		addresses_within_range = Address.near(params[:location], params[:search_proximity]).where(addressable_type: "Dwelling")
 		matching_floor_plans = FloorPlan.search_filter(floor_plan_params).select(:dwelling_id, :id)
 		address_ids, floor_plan_ids = [], []
