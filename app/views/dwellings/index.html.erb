@@ -2,25 +2,16 @@
 
 
 <%= form_tag("/search", method: "get", remote: true, id: "search-form") do %>
-	 <%= label_tag(:location, "Search for:") %>
-  <%= text_field_tag(:location, nil, :required => true, placeholder: "City or Zip Code") %>
-
-
-<%= hidden_field_tag('search_proximity')%> 
-
-
-<%= hidden_field_tag('mo_rent_price')%> 
-
-
-<%= label_tag(:bedrooms, "bedrooms") %>
-<%= select_tag(:bedrooms, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
-<%= label_tag(:baths, "bathrooms") %>
-<%= select_tag(:baths, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
-<%= label_tag(:occupants, "occupants") %>
-<%= select_tag(:occupants, options_for_select([['All', nil], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9] ], 0)) %>
-
-
-
+	<%= label_tag(:location, "Search for:") %>
+	<%= text_field_tag(:location, nil, :required => true, placeholder: "City or Zip Code") %>
+	<%= hidden_field_tag('search_proximity')%> 
+	<%= hidden_field_tag('mo_rent_price')%> 
+	<%= label_tag(:bedrooms, "bedrooms") %>
+	<%= select_tag(:bedrooms, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
+	<%= label_tag(:baths, "bathrooms") %>
+	<%= select_tag(:baths, options_for_select([['All', nil], ['1+', 1], ['2+', 2], ['3+', 3], ['4+', 4], ['5+', 5], ['6+', 6]], 0)) %>
+	<%= label_tag(:occupants, "occupants") %>
+	<%= select_tag(:occupants, options_for_select([['All', nil], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9] ], 0)) %>
   <%= submit_tag("Find", class: 'btn btn-warning', id: 'dwelling_search_form') %>
 <%end%>
 

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :dwellings
-get '/search' => 'dwellings#search', as: :search
+  patch '/dwellings/:id/image' => 'dwellings#new_image', as: :image
+  get '/search' => 'dwellings#search', as: :search
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
