@@ -6,7 +6,7 @@
 <p><%=@dwelling.amenities.first.inspect%></p>
 <p><%=@dwelling.dwelling_details.first.inspect%></p>
 
-<%= image_tag @dwelling.image(:large)%>
+<%= image_tag @dwelling.image(:thumb)%>
 
 
 <%= form_for @dwelling, url: {action: "new_image"}, html: { multipart: true } do |form| %>

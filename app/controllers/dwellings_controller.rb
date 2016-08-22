@@ -15,7 +15,6 @@ ASSOCIATED_OBJECTS = [:address, :floor_plans,
 	end
 	def new_image
 		dwelling = Dwelling.find(params[:id])
-		# binding.pry
 		dwelling.update_attributes(image_params)
 		dwelling.save
 		redirect_to dwelling_path(params[:id]) and return
