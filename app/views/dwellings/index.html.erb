@@ -1,6 +1,17 @@
 <h1>Hello index for dwelling</h1>
 
 
+<p>Here you can upload an image:</p>
+
+<div>
+	<p>
+		Image upload section:
+	</p>
+	
+</div>
+
+
+
 <%= form_tag("/search", method: "get", remote: true, id: "search-form") do %>
 	 <%= label_tag(:location, "Search for:") %>
   <%= text_field_tag(:location, nil, :required => true, placeholder: "City or Zip Code") %>
